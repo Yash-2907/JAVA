@@ -1,0 +1,21 @@
+import java.util.Scanner;
+class check
+{
+static void ch()
+{
+Scanner obj=new Scanner(System.in);
+System.out.println("PLease enter the number :-");
+int num=obj.nextInt();
+if(num%2==0)
+{
+System.out.println("EVEN");
+}
+else{
+System.out.println("ODD");
+}
+}
+public static void main(String args[])
+{
+ch();
+}
+}
