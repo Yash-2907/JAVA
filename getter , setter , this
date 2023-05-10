@@ -1,0 +1,48 @@
+import java.util.Scanner;
+class student
+{
+private String name;
+private int age;
+
+public int getage()
+{
+return age;
+}
+
+public void setage(int age)
+{
+this.age=age;
+}
+
+public String getName()
+{
+return name;
+}
+
+public void setname(String name)
+{
+this.name=name;
+}
+
+public void display()
+{
+System.out.println("NAME :-"+name+" AGE :-"+age);
+}
+
+}
+
+class main
+{
+public static void main(String[] args)
+{
+Scanner obj=new Scanner(System.in);
+System.out.println("ENTER NAME :-");
+String name=obj.next();
+System.out.println("ENTER AGE:-");
+int age=obj.nextInt();
+student ob=new student();
+ob.setname(name);
+ob.setage(age);
+ob.display();
+}
+}
