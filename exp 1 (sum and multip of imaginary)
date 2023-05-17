@@ -1,0 +1,64 @@
+import java.util.Scanner;
+class complex
+{
+    double real,imag;
+    complex()
+    {
+
+    }
+    complex(double real,double imag)
+    {
+        this.real=real;
+        this.imag=imag;
+    }
+    void setReal(double real)
+    {
+        this.real=real;
+    }
+    void setImag(double real)
+    {
+        this.imag=imag;
+    }
+    double getReal()
+    {
+        return real;
+    }
+    double getImag()
+    {
+        return imag;
+    }
+    void addcomplex(complex c1,complex c2)
+    {
+        complex c3=new complex();
+        c3.real=c1.real+c2.real;
+        c3.imag=c1.imag+c2.imag;
+        System.out.println("SUM ="+c3.getReal()+"+"+c3.getImag()+"i");
+    }
+
+    void multicomp(complex c1,complex c2)
+    {
+        complex c4=new complex();
+        c4.real=((c1.real)*(c2.real))-((c1.imag)*(c2.imag));
+        c4.imag=((c1.imag)*(c2.real))+((c1.real)*(c2.imag));
+        System.out.println("MULTIPLICATION ="+c4.getReal()+"+"+c4.getImag()+"i");
+    }
+}
+class main
+{
+    public static void main(String[] args)
+    {
+        double real1,img1;
+        Scanner obj=new Scanner(System.in);
+        System.out.println("enter the real and imaginary part respectively :-");
+        real1=obj.nextDouble();
+        img1=obj.nextDouble();
+        complex c1=new complex(real1,img1);
+
+        System.out.println("enter the real and imaginary part respectively :-");
+        real1=obj.nextDouble();
+        img1=obj.nextDouble();
+        complex c2=new complex(real1,img1);
+        c2.addcomplex(c1,c2);
+        c2.multicomp(c1,c2);
+    }
+}
