@@ -123,7 +123,7 @@ class main
         obz2.inp();
         obz3.add(obz1,obz2);
         obz3.sub(obz1,obz2);
-        System.out.println("\nSECOND PART BEGINS HERE :-\n");
+        System.out.println("-------------------------"+"\nSECOND PART BEGINS HERE :-\n"+"-------------------------");
         gc op1=new gc();
         gc op2=new gc();
         gc op3=new gc();
@@ -131,6 +131,6 @@ class main
         op2.input();
         op3.add2(op1,op2);
         op3.sub2(op1,op2);
-        System.out.println("\nTHIRD PART STARTS HERE :-\n");
+        System.out.println("-------------------------"+"\nTHIRD PART STARTS HERE :-\n"+"-------------------------");
     }
 }
