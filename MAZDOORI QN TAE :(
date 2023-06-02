@@ -1,0 +1,89 @@
+import java.util.Scanner;
+class SavingAccount
+{
+    Scanner obj=new Scanner(System.in);
+    static int interestRate;
+    void ir()
+    {
+        System.out.println("PLS ENTER THE INTEREST RATE :-");
+        interestRate=obj.nextInt();
+    }
+}
+class CurrentAccount extends SavingAccount
+{
+ static int overDraftLimit;
+ void dl()
+ {
+     System.out.println("PLS ENTER THE OVER DRAFT LIMIT :-");
+     overDraftLimit=obj.nextInt();
+ }
+}
+abstract class Account extends CurrentAccount
+{
+    int bal,withD;
+    static String name;
+    void balance()
+    {
+        System.out.println("PLS ENTER YOUR FIRST NAME :-");
+        name= obj.next();
+        System.out.println("PLS ENTER YOUR CURRENT BALANCE :-");
+        bal=obj.nextInt();
+    }
+    void deposit()
+    {
+        System.out.println("ENTER THE AMOUNT YOU WANT TO DEPOSIT :-");
+        int temp= obj.nextInt();
+        bal=bal+temp;
+    }
+    abstract int withdraw();
+}
+ class base extends Account
+ {
+    int withdraw()
+    {
+        System.out.println("ENTER THE AMOUNT YOU WANT TO WITHDRAW :-");
+        withD= obj.nextInt();
+        int totalB=bal+overDraftLimit;
+        int totalW=withD+((interestRate/100)*bal);
+        if(bal>totalW)
+        {
+            return bal-totalW;
+        }
+        else if(totalB>totalW)
+        {
+            return totalB-totalW;
+        }
+        else{
+            return 0;
+        }
+    }
+ }
+ class bank
+ {
+     public static void main(String[] args) {
+         Scanner obj=new Scanner(System.in);
+         System.out.println("ENTER NUMBER OF CUSTOMERS :-");
+         int n= obj.nextInt();
+         for(int i=0;i<n;i++)
+         {
+             base ob=new base();
+             ob.ir();
+             ob.dl();
+             ob.balance();
+             ob.deposit();
+             int temp=ob.withdraw();
+             char first=Account.name.charAt(0);
+             if(first=='A')
+             {
+                 System.out.println("NAME :- "+Account.name);
+             }
+             if(temp==0)
+             {
+                 System.out.println("INSUFFICIENT FUND");
+             }
+             else{
+                 System.out.println("CURRENT BALANCE :- "+temp);
+             }
+         }
+     }
+ }
