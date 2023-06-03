@@ -60,12 +60,13 @@ abstract class Account extends CurrentAccount
  }
  class bank
  {
-     public static void main(String[] args) {
+     public static void main(String[] args) throws Exception {
          Scanner obj=new Scanner(System.in);
          System.out.println("ENTER NUMBER OF CUSTOMERS :-");
          int n= obj.nextInt();
          for(int i=0;i<n;i++)
          {
+             System.out.println("\n-------------------------------------------------\n");
              base ob=new base();
              ob.ir();
              ob.dl();
@@ -79,7 +80,8 @@ abstract class Account extends CurrentAccount
              }
              if(temp==0)
              {
-                 System.out.println("INSUFFICIENT FUND");
+                 throw new Exception("INSUFFICIENT FUND");
+                 
              }
              else{
                  System.out.println("CURRENT BALANCE :- "+temp);
