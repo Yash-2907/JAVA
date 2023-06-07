@@ -1,0 +1,61 @@
+import java.util.*;
+class OnlineShoppingPortal
+{
+    Scanner obj=new Scanner(System.in);
+    static int type,amt;
+    static String cc;
+    void Info()
+    {
+        System.out.println("ENTER 0 IF YOU ARE PRIME USER OR 1 IF YOU ARE REGULAR USER :-");
+        type= obj.nextInt();
+        System.out.println("ENTER YOUR TOTAL AMOUNT :-");
+        amt= obj.nextInt();
+    }
+    void checkout(double tot)
+    {
+        if(tot>1000)
+        {
+            tot=tot-(tot*0.3);
+            System.out.println("YOUR TOTAL AMOUNT AFTER 30% DISCOUNT IS :-"+tot);
+        }
+        else{
+            tot=tot-(tot*0.2);
+            System.out.println("YOUR TOTAL AMOUNT AFTER 20% DISCOUNT IS :-"+tot);
+        }
+    }
+    void checkout(double tot,String code)
+    {
+        if(code.equals("GET10"))
+        {
+            if(tot<500)
+            {
+                tot=tot-10;
+                System.out.println("YOUR TOTAL AMOUNT AFTER 10 RUPEES DISCOUNT IS :-"+tot);
+            }
+            else{
+                tot=tot-(tot*0.1);
+                System.out.println("YOUR TOTAL AMOUNT AFTER 10% DISCOUNT IS :-"+tot);
+            }
+        }
+        else{
+            System.out.println("YOUR TOTAL DISCOUNT WITHOUT ANY DISCOUNT IS :-"+tot);
+        }
+    }
+}
+class Main
+{
+    public static void main(String[] args) {
+        Scanner obj=new Scanner(System.in);
+        OnlineShoppingPortal ob=new OnlineShoppingPortal();
+        ob.Info();
+        if(OnlineShoppingPortal.type==1)
+        {
+            System.out.println("PLEASE ENTER THE PROMO CODE :-");
+            OnlineShoppingPortal.cc= obj.next();
+            ob.checkout(OnlineShoppingPortal.amt,OnlineShoppingPortal.cc);
+        }
+        else{
+            ob.checkout(OnlineShoppingPortal.amt);
+        }
+    }
+}
