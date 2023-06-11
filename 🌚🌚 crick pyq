@@ -1,0 +1,93 @@
+import java.util.Scanner;
+abstract class Cricket
+{
+    Scanner obj=new Scanner(System.in);
+    String name,country;
+    int MatchesPlayed;
+    void input()
+    {
+        System.out.println("PLEASE ENTER NAME OF PLAYER :-");
+        name= obj.next();
+        System.out.println("PLEASE ENTER YOUR COUNTRY :-");
+        country= obj.next();
+        System.out.println("ENTER NUMBER OF MATCHES PLAYED :-");
+        MatchesPlayed= obj.nextInt();
+    }
+    abstract void strikeRate();
+    abstract void economyRate();
+}
+class Batsman extends Cricket
+{
+    float strikeRate;
+    int totalRunsScored,ballsFaced;
+    void economyRate()
+    {
+        System.out.println("PLEASE ENTER TOTAL RUNS SCORED :-");
+        totalRunsScored=obj.nextInt();
+        System.out.println("PLEASE ENTER TOTAL BALLS FACED :-");
+        ballsFaced=obj.nextInt();
+    }
+    void strikeRate()
+    {
+        strikeRate=(totalRunsScored/ballsFaced)*100;
+    }
+    void display()
+    {
+        System.out.println("NAME OF PLAYER :-"+name);
+        System.out.println("NAME OF PLAYER'S COUNTRY :-"+country);
+        System.out.println("NUMBER OF MATCHES PLAYED :-"+MatchesPlayed);
+        System.out.println("TOTAL RUNS SCORED :-"+totalRunsScored);
+        System.out.println("BALLS FACED :-"+ballsFaced);
+        System.out.println("STRIKE RATE :- "+strikeRate);
+    }
+}
+class Bowler extends Cricket
+{
+    float economyRate;
+    int numberOfOversBowled,numberOfWicketsTaken,numberOfRunsConceded;
+    void strikeRate()
+    {
+        System.out.println("ENTER NUMBER OF OVERS BOWLED :-"+numberOfOversBowled);
+        numberOfOversBowled= obj.nextInt();
+        System.out.println("ENTER THE TOTAL WICKETS TAKEN :-"+numberOfWicketsTaken);
+        numberOfWicketsTaken= obj.nextInt();
+        System.out.println("ENTER TOTAL RUNS CONCEDED :-"+numberOfRunsConceded);
+        numberOfRunsConceded= obj.nextInt();
+    }
+    void economyRate()
+    {
+        economyRate=(numberOfRunsConceded)/(numberOfOversBowled);
+    }
+    void display()
+    {
+        System.out.println("NAME OF PLAYER :-"+name);
+        System.out.println("NAME OF PLAYER'S COUNTRY :-"+country);
+        System.out.println("NUMBER OF MATCHES PLAYED :-"+MatchesPlayed);
+        System.out.println("NUMBER OF OVERS BOWLED :-"+numberOfOversBowled);
+        System.out.println("NUMBER OF WICKETS TAKEN :-"+numberOfWicketsTaken);
+        System.out.println("ECONOMY RATE :-"+economyRate);
+    }
+}
+class main
+{
+    public static void main(String[] args) {
+        Scanner ob=new Scanner(System.in);
+        Batsman ob1=new Batsman();
+        Bowler ob2=new Bowler();
+        System.out.println("ENTER 1 IF YOU ARE A BATSMAN OR 2 IF YOU ARE A BOWLER :-");
+        int temp= ob.nextInt();
+        if(temp==1)
+        {
+            ob1.input();
+            ob1.economyRate();
+            ob1.strikeRate();
+            ob1.display();
+        }
+        else{
+            ob2.input();
+            ob2.strikeRate();
+            ob2.economyRate();
+            ob2.display();
+        }
+    }
+}
