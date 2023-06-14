@@ -130,11 +130,109 @@ class GreatClock extends Time
         System.out.println("---------------------------------------------------------------------");
     }
 }
+class timezone extends GreatClock
+{
+    void calc(int x)
+    {
+        if(x==1)
+        {
+           ahr=ahr+2;
+           amin=amin+30;
+           shr=shr+2;
+           smin=smin+30;
+            while(smin>60)
+            {
+                shr++;
+                smin=smin-60;
+            }
+            while(shr>=24)
+            {
+                shr=shr-24;
+            }
+            while(amin>60)
+            {
+                ahr++;
+                amin=amin-60;
+            }
+            while(ahr>=24)
+            {
+                ahr=ahr-24;
+            }
+            System.out.println("---------------------------------------------------------------------");
+            System.out.println("USA TIME ADDITION ANS :- "+ahr+"hr:"+amin+"min:"+asec+"sec:"+ams+"msec");
+            System.out.println("USA TIME SUBSTRACTION ANS :- "+shr+"hr:"+smin+"min:"+ssec+"sec:"+sms+"msec");
+            System.out.println("---------------------------------------------------------------------");
+        }
+        else if(x==2)
+        {
+            ahr++;
+            amin=amin+30;
+            shr++;
+            smin=smin+30;
+            while(smin>60)
+            {
+                shr++;
+                smin=smin-60;
+            }
+            while(shr>=24)
+            {
+                shr=shr-24;
+            }
+            while(amin>60)
+            {
+                ahr++;
+                amin=amin-60;
+            }
+            while(ahr>=24)
+            {
+                ahr=ahr-24;
+            }
+            System.out.println("---------------------------------------------------------------------");
+            System.out.println("USA TIME ADDITION ANS :- "+ahr+"hr:"+amin+"min:"+asec+"sec:"+ams+"msec");
+            System.out.println("USA TIME SUBSTRACTION ANS :- "+shr+"hr:"+smin+"min:"+ssec+"sec:"+sms+"msec");
+            System.out.println("---------------------------------------------------------------------");
+        }
+        else{
+            ahr=ahr+3;
+            amin=amin+30;
+            while(smin>60)
+            {
+                shr++;
+                smin=smin-60;
+            }
+            while(shr>=24)
+            {
+                shr=shr-24;
+            }
+            while(amin>60)
+            {
+                ahr++;
+                amin=amin-60;
+            }
+            while(ahr>=24)
+            {
+                ahr=ahr-24;
+            }
+            System.out.println("---------------------------------------------------------------------");
+            System.out.println("USA TIME ADDITION ANS :- "+ahr+"hr:"+amin+"min:"+asec+"sec:"+ams+"msec");
+            System.out.println("USA TIME SUBSTRACTION ANS :- "+shr+"hr:"+smin+"min:"+ssec+"sec:"+sms+"msec");
+            System.out.println("---------------------------------------------------------------------");
+        }
+    }
+}
 class Main
 {
     public static void main(String[] args) {
-        GreatClock obj1=new GreatClock();
-        GreatClock obj2=new GreatClock();
+        Scanner obj=new Scanner(System.in);
+        System.out.println("CHOOSE WHICH TIMEZONE YOU WILL PREFER YOUR ANSWER TO CONVERT INTO:-");
+        System.out.println(" NUMBER  |  COUNTRY ");
+        System.out.println("---------|----------------------------------");
+        System.out.println(" 1       |   USA(2.5hr gap)");
+        System.out.println(" 2       |   SIBERIA(1.5hr gap)");
+        System.out.println(" 3       |   JAPAN(3.5hr gap)");
+        int temp= obj.nextInt();
+        timezone obj1=new timezone();
+        timezone obj2=new timezone();
         obj1.input();
         obj2.input();
         obj1.add(obj2);
@@ -143,5 +241,6 @@ class Main
         obj2.input2();
         obj1.add2(obj2);
         obj1.sub2(obj2);
+        obj1.calc(temp);
     }
 }
