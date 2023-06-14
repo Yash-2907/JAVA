@@ -1,0 +1,147 @@
+import java.util.Scanner;
+class Time
+{
+    int hr,min,ahr,amin,shr,smin;
+    Scanner obj=new Scanner(System.in);
+    void input()
+    {
+        System.out.println("PLS ENTER THE VALUE OF HOURS :-");
+        hr= obj.nextInt();
+        System.out.println("PLS ENTER THE VALUE OF MINUTES :-");
+        min=obj.nextInt();
+    }
+    void add(Time x)
+    {
+        ahr=hr+x.hr;
+        amin=min+x.min;
+        while(amin>=60)
+        {
+            ahr++;
+            amin=amin-60;
+        }
+        while(ahr>=24)
+        {
+            ahr=ahr-24;
+        }
+        System.out.println("---------------------------------------------------------------------");
+        System.out.println("ADDITION ANS :- "+ahr+"hr:"+amin+"min");
+    }
+    void sub(Time x)
+    {
+        if(hr>=x.hr)
+        {
+            shr=hr-x.hr;
+        }
+        else{
+            shr=x.hr-hr;
+        }
+        if(min>=x.min)
+        {
+            smin=min-x.min;
+        }
+        else{
+            smin=x.min-min;
+        }
+        while(smin>=60)
+        {
+            shr++;
+            smin=smin-60;
+        }
+        while(shr>24)
+        {
+            shr=shr-24;
+        }
+        System.out.println("SUBSTRACTION ANS :- "+shr+"hr:"+smin+"min");
+        System.out.println("---------------------------------------------------------------------");
+    }
+}
+class GreatClock extends Time
+{
+    int sec,ms,asec,ams,sms,ssec;
+    void input2()
+    {
+        System.out.println("PLS ENTER THE VALUE OF SECONDS :-");
+        sec= obj.nextInt();
+        System.out.println("PLS ENTER THE VALUE OF MILISECONDS :-");
+        ms=obj.nextInt();
+    }
+    void add2(GreatClock x)
+    {
+        asec=sec+x.sec;
+        ams=ms+x.ms;
+        while(ams>=1000)
+        {
+            asec++;
+            ams=ams-1000;
+        }
+        while(asec>=60)
+        {
+            amin++;
+            asec=asec-60;
+        }
+        while(amin>60)
+        {
+            ahr++;
+            amin=amin-60;
+        }
+        while(ahr>=24)
+        {
+            ahr=ahr-24;
+        }
+        System.out.println("---------------------------------------------------------------------");
+        System.out.println("ADDITION ANS :- "+ahr+"hr:"+amin+"min:"+asec+"sec:"+ams+"msec");
+    }
+    void sub2(GreatClock x)
+    {
+        if(sec>x.sec)
+        {
+            ssec=sec-x.sec;
+        }
+        else{
+            ssec=x.sec-sec;
+        }
+        if(ms>x.ms)
+        {
+            sms=ms-x.ms;
+        }
+        else{
+            sms=x.ms-ms;
+        }
+        while(sms>=1000)
+        {
+            ssec++;
+            sms=sms-1000;
+        }
+        while(ssec>=60)
+        {
+            smin++;
+            ssec=ssec-60;
+        }
+        while(smin>60)
+        {
+            shr++;
+            smin=smin-60;
+        }
+        while(shr>=24)
+        {
+            shr=shr-24;
+        }
+        System.out.println("SUBSTRACTION ANS :- "+shr+"hr:"+smin+"min:"+ssec+"sec:"+sms+"msec");
+        System.out.println("---------------------------------------------------------------------");
+    }
+}
+class Main
+{
+    public static void main(String[] args) {
+        GreatClock obj1=new GreatClock();
+        GreatClock obj2=new GreatClock();
+        obj1.input();
+        obj2.input();
+        obj1.add(obj2);
+        obj1.sub(obj2);
+        obj1.input2();
+        obj2.input2();
+        obj1.add2(obj2);
+        obj1.sub2(obj2);
+    }
+}
