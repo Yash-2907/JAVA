@@ -1,0 +1,113 @@
+import java.util.Scanner;
+class func
+{
+    Scanner obj=new Scanner(System.in);
+    int leap,n,flag=0;
+    void input()
+    {
+        int z=0;
+        n= obj.nextInt();
+        leap= obj.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++)
+        {
+            arr[i]= obj.nextInt();
+        }
+        if((z>=(n-1))||((z+leap)>=(n-1)))
+        {
+            flag=1;
+        }
+        else{
+            if(arr[z+1]==0)
+            {
+                front(z,arr);
+            }
+            if(arr[z+leap]==0)
+            {
+                jump(z,arr);
+            }
+        }
+    }
+    void front(int z,int arr[])
+    {
+        z++;
+        if((z>=(n-1))||((z+leap)>=(n-1)))
+        {
+            flag=1;
+        }
+        else{
+            if(arr[z+1]==0)
+            {
+                front(z,arr);
+            }
+            if(arr[z+leap]==0)
+            {
+                jump(z,arr);
+            }
+        }
+    }
+    void back(int z,int arr[])
+    {
+        z--;
+        if((z>=(n-1))||((z+leap)>=(n-1)))
+        {
+            flag=1;
+        }
+        else{
+            if(arr[z-1]==0)
+            {
+                back(z,arr);
+            }
+            if(arr[z+leap]==0)
+            {
+                jump(z,arr);
+            }
+        }
+    }
+    void jump(int z,int arr[])
+    {
+        z=z+leap;
+        if((z>=(n-1))||((z+leap)>=(n-1)))
+        {
+            flag=1;
+        }
+        else{
+            if(arr[z+1]==0)
+            {
+                front(z,arr);
+            }
+            if(arr[z-1]==0)
+            {
+                back(z,arr);
+            }
+            if(arr[z+leap]==0)
+            {
+                jump(z,arr);
+            }
+        }
+    }
+
+    void check()
+    {
+        if(flag==1)
+        {
+            System.out.println("YES");
+        }
+        else{
+            System.out.println("NO");
+        }
+    }
+}
+class main
+{
+    public static void main(String[] args) {
+        Scanner obj=new Scanner(System.in);
+        int n= obj.nextInt();
+        func ob=new func();
+        for(int i=0;i<n;i++)
+        {
+            ob.input();
+            ob.check();
+        }
+    }
+}
