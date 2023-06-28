@@ -1,0 +1,120 @@
+import java.util.*;
+class User
+{
+    String Username,Password,Gender,CreatedDate,Echeck;
+    int MobileNumber,IsActive;
+    Scanner obj=new Scanner(System.in);
+    void PrintUser()
+    {
+        if(Gender.equals("F")||Echeck.contains("gmail.com"))
+        {
+            System.out.println("USERNAME :-"+Username);
+            System.out.println("PASSWORD :-"+Password);
+            System.out.println("GENDER :-"+Gender);
+            System.out.println("CREATED DATE :-"+CreatedDate);
+            System.out.println("EMAIL :-"+Echeck);
+            System.out.println("\n\n");
+        }
+    }
+}
+class StandardUser extends User
+{
+    String alias,LastLogin,Role;
+    StandardUser(String U,String P,String G,String C,int M,int I)
+    {
+        this.Username=U;
+        this.Password=P;
+        this.Gender=G;
+        this.CreatedDate=C;
+        this.MobileNumber=M;
+        this.IsActive=I;
+        System.out.println("ENTER YOUR ALIAS (NICKNAME) :-");
+        alias= obj.next();
+        System.out.println("ENTER YOUR LAST LOGIN TIME IN HR:MIN:SEC FORMAT :-");
+        LastLogin= obj.next();
+        System.out.println("ENTER YOUR ROLE :-");
+        Role= obj.next();
+    }
+}
+class CustomUser extends User
+{
+    String Email,SecurityKey,Manager;
+    CustomUser(String U,String P,String G,String C,int M,int I)
+    {
+        super.Username=U;
+        super.Password=P;
+        super.Gender=G;
+        super.CreatedDate=C;
+        super.MobileNumber=M;
+        super.IsActive=I;
+        System.out.println("ENTER YOUR EMAIL :-");
+        Email= obj.next();
+        Echeck=Email;
+        System.out.println("ENTER YOUR SECURITY KEY :-");
+        SecurityKey= obj.next();
+        System.out.println("ENTER IF YOU ARE MANAGER OR NOT :-");
+        Manager= obj.next();
+    }
+}
+class Main
+{
+    public static void main(String[] args) {
+          Scanner ob=new Scanner(System.in);
+        System.out.println("ENTER NUMBER OF USERS :-");
+        int temp= ob.nextInt();
+        String Username,Password,Gender,CreatedDate;
+        int MobileNumber,IsActive;
+        System.out.println("ENTER 1 FOR STANDARD USER AND 2 FOR CUSTOM USER :-");
+        int x= ob.nextInt();
+        if(x==1)
+        {
+            StandardUser[] arr=new StandardUser[temp];
+            for(int i=0;i<temp;i++)
+            {
+                System.out.println("\n----------------------------------------------------NEW USER DATA ENTRY------------------------------------------------------\n");
+                System.out.println("PLS ENTER YOUR USERNAME :-");
+                Username= ob.next();
+                System.out.println("PLS ENTER YOUR PASSWORD :-");
+                Password= ob.next();
+                System.out.println("PLS ENTER YOUR GENDER (M FOR MALE , F FOR FEMALE) :-");
+                Gender= ob.next();
+                System.out.println("PLS ENTER THE DATE WHEN THE ACCOUNT CREATED IN DD/MM/YYYY FORMAT :-");
+                CreatedDate= ob.next();
+                System.out.println("PLS ENTER YOUR MOBILE NUMBER :-");
+                MobileNumber= ob.nextInt();
+                System.out.println("PLS ENTER 1 FOR ACTIVE , 0 FOR NOT ACTIVE :-");
+                IsActive= ob.nextInt();
+                arr[i]= new StandardUser(Username,Password,Gender,CreatedDate,MobileNumber,IsActive);
+            }
+            System.out.println("\n\n-----------USERS WHO ARE FEMALE OR HAVE GMAIL.COM------------------\n\n");
+            for(int i=0;i<temp;i++)
+            {
+                arr[i].PrintUser();
+            }
+        }
+        else {
+            CustomUser[] arr = new CustomUser[temp];
+            for (int i = 0; i < temp; i++) {
+                System.out.println("\n----------------------------------------------------NEW USER DATA ENTRY------------------------------------------------------\n");
+                System.out.println("PLS ENTER YOUR USERNAME :-");
+                Username = ob.next();
+                System.out.println("PLS ENTER YOUR PASSWORD :-");
+                Password = ob.next();
+                System.out.println("PLS ENTER YOUR GENDER (M FOR MALE , F FOR FEMALE) :-");
+                Gender = ob.next();
+                System.out.println("PLS ENTER THE DATE WHEN THE ACCOUNT CREATED IN DD/MM/YYYY FORMAT :-");
+                CreatedDate = ob.next();
+                System.out.println("PLS ENTER YOUR MOBILE NUMBER :-");
+                MobileNumber = ob.nextInt();
+                System.out.println("PLS ENTER 1 FOR ACTIVE , 0 FOR NOT ACTIVE :-");
+                IsActive = ob.nextInt();
+                arr[i] = new CustomUser(Username, Password, Gender, CreatedDate, MobileNumber, IsActive);
+            }
+            System.out.println("\n\n-----------USERS WHO ARE FEMALE OR HAVE GMAIL.COM------------------\n\n");
+            for(int i=0;i<temp;i++)
+            {
+                arr[i].PrintUser();
+            }
+        }
+    }
+}
