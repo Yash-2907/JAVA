@@ -1,7 +1,8 @@
 import java.util.*;
 class User
 {
-    String Username,Password,Gender,CreatedDate,Echeck;
+    String Username,Password,Gender,CreatedDate;
+    String Echeck="NONE";
     int MobileNumber,IsActive;
     Scanner obj=new Scanner(System.in);
     void PrintUser()
@@ -60,18 +61,16 @@ class Main
 {
     public static void main(String[] args) {
           Scanner ob=new Scanner(System.in);
-        System.out.println("ENTER NUMBER OF USERS :-");
+        System.out.println("ENTER NUMBER OF STANDARD USERS :-");
         int temp= ob.nextInt();
+        System.out.println("ENTER NUMBER OF CUSTOM USERS :-");
+        int temp2= ob.nextInt();
         String Username,Password,Gender,CreatedDate;
         int MobileNumber,IsActive;
-        System.out.println("ENTER 1 FOR STANDARD USER AND 2 FOR CUSTOM USER :-");
-        int x= ob.nextInt();
-        if(x==1)
-        {
             StandardUser[] arr=new StandardUser[temp];
             for(int i=0;i<temp;i++)
             {
-                System.out.println("\n----------------------------------------------------NEW USER DATA ENTRY------------------------------------------------------\n");
+                System.out.println("\n----------------------------------------------------NEW STANDARD USER DATA ENTRY------------------------------------------------------\n");
                 System.out.println("PLS ENTER YOUR USERNAME :-");
                 Username= ob.next();
                 System.out.println("PLS ENTER YOUR PASSWORD :-");
@@ -86,16 +85,9 @@ class Main
                 IsActive= ob.nextInt();
                 arr[i]= new StandardUser(Username,Password,Gender,CreatedDate,MobileNumber,IsActive);
             }
-            System.out.println("\n\n-----------USERS WHO ARE FEMALE OR HAVE GMAIL.COM------------------\n\n");
-            for(int i=0;i<temp;i++)
-            {
-                arr[i].PrintUser();
-            }
-        }
-        else {
-            CustomUser[] arr = new CustomUser[temp];
-            for (int i = 0; i < temp; i++) {
-                System.out.println("\n----------------------------------------------------NEW USER DATA ENTRY------------------------------------------------------\n");
+            CustomUser[] arr2 = new CustomUser[temp2];
+            for (int i = 0; i < temp2; i++) {
+                System.out.println("\n----------------------------------------------------NEW CUSTOM USER DATA ENTRY------------------------------------------------------\n");
                 System.out.println("PLS ENTER YOUR USERNAME :-");
                 Username = ob.next();
                 System.out.println("PLS ENTER YOUR PASSWORD :-");
@@ -108,13 +100,15 @@ class Main
                 MobileNumber = ob.nextInt();
                 System.out.println("PLS ENTER 1 FOR ACTIVE , 0 FOR NOT ACTIVE :-");
                 IsActive = ob.nextInt();
-                arr[i] = new CustomUser(Username, Password, Gender, CreatedDate, MobileNumber, IsActive);
+                arr2[i] = new CustomUser(Username, Password, Gender, CreatedDate, MobileNumber, IsActive);
             }
             System.out.println("\n\n-----------USERS WHO ARE FEMALE OR HAVE GMAIL.COM------------------\n\n");
             for(int i=0;i<temp;i++)
             {
                 arr[i].PrintUser();
             }
+            for(int i=0;i<temp2;i++) {
+                 arr2[i].PrintUser();
+            }
         }
     }
-}
