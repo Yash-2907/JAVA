@@ -3,7 +3,8 @@ class User
 {
     String Username,Password,Gender,CreatedDate;
     String Echeck="NONE";
-    int MobileNumber,IsActive;
+    int IsActive;
+    long MobileNumber;
     Scanner obj=new Scanner(System.in);
     void PrintUser()
     {
@@ -21,7 +22,7 @@ class User
 class StandardUser extends User
 {
     String alias,LastLogin,Role;
-    StandardUser(String U,String P,String G,String C,int M,int I)
+    StandardUser(String U,String P,String G,String C,long M,int I)
     {
         this.Username=U;
         this.Password=P;
@@ -40,7 +41,7 @@ class StandardUser extends User
 class CustomUser extends User
 {
     String Email,SecurityKey,Manager;
-    CustomUser(String U,String P,String G,String C,int M,int I)
+    CustomUser(String U,String P,String G,String C,long M,int I)
     {
         super.Username=U;
         super.Password=P;
@@ -66,7 +67,8 @@ class Main
         System.out.println("ENTER NUMBER OF CUSTOM USERS :-");
         int temp2= ob.nextInt();
         String Username,Password,Gender,CreatedDate;
-        int MobileNumber,IsActive;
+        int IsActive;
+        long MobileNumber;
             StandardUser[] arr=new StandardUser[temp];
             for(int i=0;i<temp;i++)
             {
@@ -80,7 +82,7 @@ class Main
                 System.out.println("PLS ENTER THE DATE WHEN THE ACCOUNT CREATED IN DD/MM/YYYY FORMAT :-");
                 CreatedDate= ob.next();
                 System.out.println("PLS ENTER YOUR MOBILE NUMBER :-");
-                MobileNumber= ob.nextInt();
+                MobileNumber= ob.nextLong();
                 System.out.println("PLS ENTER 1 FOR ACTIVE , 0 FOR NOT ACTIVE :-");
                 IsActive= ob.nextInt();
                 arr[i]= new StandardUser(Username,Password,Gender,CreatedDate,MobileNumber,IsActive);
@@ -97,7 +99,7 @@ class Main
                 System.out.println("PLS ENTER THE DATE WHEN THE ACCOUNT CREATED IN DD/MM/YYYY FORMAT :-");
                 CreatedDate = ob.next();
                 System.out.println("PLS ENTER YOUR MOBILE NUMBER :-");
-                MobileNumber = ob.nextInt();
+                MobileNumber = ob.nextLong();
                 System.out.println("PLS ENTER 1 FOR ACTIVE , 0 FOR NOT ACTIVE :-");
                 IsActive = ob.nextInt();
                 arr2[i] = new CustomUser(Username, Password, Gender, CreatedDate, MobileNumber, IsActive);
