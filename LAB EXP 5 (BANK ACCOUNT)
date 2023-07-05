@@ -1,0 +1,136 @@
+import java.sql.SQLOutput;
+import java.util.*;
+class BankAccount
+{
+    Scanner obj=new Scanner(System.in);
+    long AadhaarNumber;
+    double ROI,balance,b2;
+    String AccountNumber,OwnerName;
+    void openAccount()
+    {
+        System.out.println("PLS ENTER YOUR NAME :-");
+        OwnerName= obj.next();
+        System.out.println("ENTER YOUR ADHAAR NUMBER :-");
+        AadhaarNumber= obj.nextLong();
+        System.out.println("ENTER YOUR CURRENT BALANCE :-");
+        balance= obj.nextDouble();
+        b2=balance;
+    }
+    void deposit(int temp)
+    {
+        balance=balance+temp;
+    }
+    void closeAccount()
+    {
+    }
+    void updateInterest()
+    {
+    }
+}
+
+interface Debitable
+{
+    void Withdraw();
+}
+
+class FixedDeposit extends BankAccount
+{
+    int lockInPeriod;
+    FixedDeposit(String s)
+    {
+        AccountNumber=s;
+    }
+    void updateInterest()
+    {
+        System.out.println("ENTER YOUR LOCK IN PERIOD :-");
+        lockInPeriod= obj.nextInt();
+        if(lockInPeriod<2)
+        {
+            ROI=6;
+        }
+        else if(lockInPeriod<5)
+        {
+            ROI=6.5;
+        }
+        else{
+            ROI=7;
+        }
+    }
+    void closeAccount()
+    {
+        System.out.println("5% CHARGED ON FD");
+        balance=balance-(balance/20);
+    }
+    void display()
+    {
+        System.out.println("\n\n-------------USER INFO-------------\n\n");
+        double b3=balance+((balance*ROI*lockInPeriod)/100);
+        System.out.println("NAME :-"+OwnerName);
+        System.out.println("AADHAAR NUMBER :-"+AadhaarNumber);
+        System.out.println("ACCOUNT NUMBER(RANDOM GENERATED) :-"+AccountNumber);
+        System.out.println("RATE OF INTEREST :-"+ROI);
+        System.out.println("PREVIOUS BALANCE :-"+b2);
+        System.out.println("CURRENT BALANCE :-"+balance);
+        System.out.println("AMOUNT AT END OF FD AFTER "+lockInPeriod+"yrs :-"+b3);
+    }
+}
+
+
+class SavingAccount extends BankAccount implements Debitable
+{
+    SavingAccount(String s)
+    {
+        AccountNumber=s;
+    }
+    public void Withdraw()
+    {
+        ROI=4;
+        System.out.println("ENTER AMOUNT YOU WANT TO DEBIT :-");
+        int temp= obj.nextInt();
+        balance=balance-temp;
+    }
+    void display()
+    {
+        System.out.println("\n\n-------------USER INFO-------------\n\n");
+        double b3=balance+((balance*ROI)/100);
+        System.out.println("NAME :-"+OwnerName);
+        System.out.println("AADHAAR NUMBER :-"+AadhaarNumber);
+        System.out.println("ACCOUNT NUMBER(RANDOM GENERATED) :-"+AccountNumber);
+        System.out.println("RATE OF INTEREST :-"+ROI);
+        System.out.println("PREVIOUS BALANCE :-"+b2);
+        System.out.println("CURRENT BALANCE :-"+balance);
+        System.out.println("AMOUNT WITH INTEREST ON SAVINGS ACCOUNT :-"+b3);
+    }
+}
+
+class Main
+{
+    public static void main(String[] args) {
+        Scanner ob=new Scanner(System.in);
+        System.out.println("ENTER 1 FOR FD AND 2 FOR SAVINGS ACCOUNT :-");
+        int temp= ob.nextInt();
+        Random random = new Random();
+        int num = random.nextInt(100000);
+        String formatted = String.format("%05d", num);
+        if(temp==1)
+        {
+            FixedDeposit obz=new FixedDeposit(formatted);
+            obz.openAccount();
+            System.out.println("ENTER THE AMOUNT YOU WANT TO DEPOSIT :-");
+            int dep= ob.nextInt();
+            obz.deposit(dep);
+            obz.updateInterest();
+            obz.closeAccount();
+            obz.display();
+        }
+        else{
+            SavingAccount obz=new SavingAccount(formatted);
+            obz.openAccount();
+            System.out.println("ENTER THE AMOUNT YOU WANT TO DEPOSIT :-");
+            int dep= ob.nextInt();
+            obz.deposit(dep);
+            obz.Withdraw();
+            obz.display();
+        }
+    }
+}
