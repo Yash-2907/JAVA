@@ -1,0 +1,69 @@
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.sql.SQLOutput;
+import java.util.*;
+
+class Product
+{
+    private String product_name,max_discount;
+    private int cost,manufacturer;
+    Product(String n,String p,String m,String d)
+    {
+       product_name=n;
+       cost=Integer.parseInt(p);
+       manufacturer=Integer.parseInt(m);
+       max_discount=d;
+       toString();
+    }
+    public String toString()
+    {
+        System.out.println("NAME :- "+product_name+"\nCost :- "+cost+"\nManufacturer :- "+manufacturer+"\nMax discount :- "+max_discount+"\n");
+        return "END";
+    }
+}
+class Main
+{
+    public static void main(String[] args) throws Exception{
+        FileReader fr=new FileReader("D:\\RCOEM\\JAVATEMP.txt");
+        BufferedReader br=new BufferedReader(fr);
+        int i;
+        int temp=0;
+        String s = "";
+        ArrayList<String> arrL=new ArrayList<String>();
+        Product[] arr=new Product[10];
+        Map<Integer,String> map=new HashMap<Integer,String>();
+        Map<Integer,String> map2=new HashMap<Integer,String>();
+        System.out.println("----------------ALL USERS---------------------");
+        while((i=br.read())!=-1){
+            if(i!='\n') {
+                if (i != ' ') {
+                    s = s + (char) i;
+                } else {
+                    arrL.add(s);
+                    s = "";
+                }
+            }
+            else{
+                arrL.add(s);
+                s = "";
+                map.put(Integer.parseInt(arrL.get(1)),arrL.get(0));
+                map2.put(Integer.parseInt(arrL.get(2)),arrL.get(0));
+                arr[temp]=new Product(arrL.get(0),arrL.get(1),arrL.get(2),arrL.get(3));
+                temp++;
+                arrL.clear();
+            }
+        }
+        arrL.add(s);
+        s = "";
+        map.put(Integer.parseInt(arrL.get(1)),arrL.get(0));
+        map2.put(Integer.parseInt(arrL.get(2)),arrL.get(0));
+        arr[temp]=new Product(arrL.get(0),arrL.get(1),arrL.get(2),arrL.get(3));
+        System.out.println("------------------PRODUCT IN INCREASING PRICE ORDER---------------------");
+        map.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(System.out::println);
+        System.out.println("------------------PRODUCT IN INCREASING NUMBER OF MANUFACTURERS-------------------");
+        map2.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(System.out::println);
+        br.close();
+        fr.close();
+    }
+}
