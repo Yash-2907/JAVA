@@ -6,15 +6,15 @@ import java.util.*;
 
 class Product
 {
-    private String product_name,max_discount;
-    private int cost,manufacturer;
+    private String product_name,max_discount,manufacturer;
+    private int cost;
     Product(String n,String p,String m,String d)
     {
-       product_name=n;
-       cost=Integer.parseInt(p);
-       manufacturer=Integer.parseInt(m);
-       max_discount=d;
-       toString();
+        product_name=n;
+        cost=Integer.parseInt(p);
+        manufacturer=m;
+        max_discount=d;
+        toString();
     }
     public String toString()
     {
@@ -33,7 +33,8 @@ class Main
         ArrayList<String> arrL=new ArrayList<String>();
         Product[] arr=new Product[10];
         Map<Integer,String> map=new HashMap<Integer,String>();
-        Map<Integer,String> map2=new HashMap<Integer,String>();
+        Map<String,String> map2=new HashMap<String,String>();
+        Map<Integer,String> map3=new HashMap<Integer,String>();
         System.out.println("----------------ALL USERS---------------------");
         while((i=br.read())!=-1){
             if(i!='\n') {
@@ -48,7 +49,10 @@ class Main
                 arrL.add(s);
                 s = "";
                 map.put(Integer.parseInt(arrL.get(1)),arrL.get(0));
-                map2.put(Integer.parseInt(arrL.get(2)),arrL.get(0));
+                map2.put(arrL.get(2),arrL.get(0));
+                if(Integer.parseInt(arrL.get(3))==50) {
+                    map3.put(Integer.parseInt(arrL.get(1))/2, arrL.get(0));
+                }
                 arr[temp]=new Product(arrL.get(0),arrL.get(1),arrL.get(2),arrL.get(3));
                 temp++;
                 arrL.clear();
@@ -57,12 +61,17 @@ class Main
         arrL.add(s);
         s = "";
         map.put(Integer.parseInt(arrL.get(1)),arrL.get(0));
-        map2.put(Integer.parseInt(arrL.get(2)),arrL.get(0));
+        map2.put(arrL.get(2),arrL.get(0));
+        if(Integer.parseInt(arrL.get(3))==50) {
+            map3.put(Integer.parseInt(arrL.get(1))/2, arrL.get(0));
+        }
         arr[temp]=new Product(arrL.get(0),arrL.get(1),arrL.get(2),arrL.get(3));
         System.out.println("------------------PRODUCT IN INCREASING PRICE ORDER---------------------");
         map.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(System.out::println);
         System.out.println("------------------PRODUCT IN INCREASING NUMBER OF MANUFACTURERS-------------------");
         map2.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(System.out::println);
+        System.out.println("------------------PRODUCT WITH 50% OFF WITH FINAL PRICE ARE-----------------------");
+        System.out.println(map3);
         br.close();
         fr.close();
     }
