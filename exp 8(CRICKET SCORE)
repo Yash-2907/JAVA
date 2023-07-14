@@ -1,0 +1,73 @@
+import java.util.*;
+import java.lang.*;
+class Server extends Thread
+{
+    int score=10;
+    Website obz=new Website();
+    Client obzz=new Client();
+    Random Rand=new Random();
+    Server(Website obj1,Client obj2)
+    {
+        obz=obj1;
+        obzz=obj2;
+    }
+        public void run ()
+        {
+            try {
+                while (1 > 0) {
+                    int add=Rand.nextInt(10);
+                    score = score + add;
+                    sleep(3000);
+                    obz.display(score);
+                    obzz.disp(score);
+                }
+            }
+            catch(InterruptedException e)
+            {
+
+            }
+        }
+}
+class Website
+{
+    void display(int s)
+    {
+        System.out.println("LIVE SCORE(ENTER 123 TO END THE LIVE SCORE) :- "+s+"/2");
+    }
+}
+class Client
+{
+   void disp(int s)
+   {
+       System.out.println("CLIENT 1 SCORE :- "+s+"/2");
+       System.out.println("CLIENT 2 SCORE :- "+s+"/2");
+       System.out.println("CLIENT 3 SCORE :- "+s+"/2");
+       System.out.println("CLIENT 4 SCORE :- "+s+"/2");
+       System.out.println("CLIENT 5 SCORE :- "+s+"/2");
+   }
+}
+class Temp extends Thread
+{
+    Scanner obj=new Scanner(System.in);
+    public void run()
+    {
+        int n;
+        n= obj.nextInt();
+        if(n==123)
+        {
+            System.exit(1);
+        }
+    }
+}
+class main
+{
+    public static void main(String[] args) {
+        System.out.println("=======================LIVE CRICKET SCORE PROGRAM========================");
+        Website obj1=new Website();
+        Client obj2=new Client();
+        Temp obj3=new Temp();
+        Server obj=new Server(obj1,obj2);
+        obj.start();
+        obj3.start();
+    }
+}
