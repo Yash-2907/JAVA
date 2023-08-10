@@ -1,0 +1,104 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Book
+{
+    String book_name;
+    int ANum,copies_available,copies_issued;
+    Book(String book_name,int Anum,int copies_available,int copies_issued)
+    {
+        this.book_name=book_name;
+      this.ANum=Anum;
+      this.copies_available=copies_available;
+      this.copies_issued=copies_issued;
+    }
+    void IssueBook()
+    {
+        if(copies_available==0)
+        {
+            System.out.println("BOOK NOT AVAILABLE");
+        }
+        else {
+            copies_available--;
+            copies_issued++;
+            System.out.println("\n-----------------------------------------------------------------------------");
+            System.out.println("BOOK ISSUED SUCCESSFULLY\n");
+            display(1, -1);
+        }
+    }
+    void ReturnBook()
+    {
+        copies_available++;
+        copies_issued--;
+        System.out.println("\n-----------------------------------------------------------------------------");
+        System.out.println("BOOK RETURNED SUCCESSFULLY\n");
+        display(-1,1);
+    }
+    void display(int i,int j)
+    {
+        System.out.println("NAME OF BOOK :- "+book_name);
+        System.out.println("ACCESSION NUMBER :- "+ANum);
+        System.out.println("CURRENT COPIES AVAILABLE :- "+copies_available);
+        System.out.println("ORIGINAL COPIES AVAILABLE :- "+(copies_available+i));
+        System.out.println("CURRENT COPIES ISSUED :- "+copies_issued);
+        System.out.println("ORIGINAL COPIES ISSUED :- "+(copies_issued+j));
+    }
+}
+class Library
+{
+    void object(Book[] obj)
+    {
+        System.out.println("\n-----------------------------------------------------------------------------");
+        System.out.println("ARRAY OF BOOKS RECIEVED");
+        System.out.println("-----------------------------------------------------------------------------");
+    }
+}
+class Main
+{
+    public static void main(String[] args) {
+        Scanner obj=new Scanner(System.in);
+        System.out.println("ENTER THE NUMBER OF BOOKS IN LIBRARY:-");
+        int temp= obj.nextInt();
+        Book[] arr=new Book[temp];
+        ArrayList<String> al=new ArrayList();
+        System.out.println("ENTER INFO ABOUT EACH BOOK :-");
+        String book_name;
+        int ANum,copies_available,copies_issued;
+        for(int i=0;i<temp;i++)
+        {
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("ENTER NAME OF BOOK :-");
+            book_name= obj.next();
+            System.out.println("ENTER ACCESSION NUMBER OF BOOK :-");
+            ANum= obj.nextInt();
+            System.out.println("ENTER COPIES AVAILABLE :-");
+            copies_available= obj.nextInt();
+            System.out.println("ENTER COPIED ISSUED :-");
+            copies_issued= obj.nextInt();
+            al.add(book_name);
+            arr[i]=new Book(book_name,ANum,copies_available,copies_issued);
+            System.out.println("-----------------------------------------------------------------------------\n");
+        }
+        Library obz=new Library();
+        obz.object(arr);
+        System.out.println("ENTER 1 TO RETURN BOOK OR 0 TO ISSUE BOOK :-");
+        int x= obj.nextInt();
+        if(x==1)
+        {
+            System.out.println("ENTER NAME OF BOOK YOU WANT TO RETURN :- ");
+            String s= obj.next();
+            int index=al.indexOf(s);
+            arr[index].ReturnBook();
+        }
+        else if(x==0){
+            System.out.println("ENTER NAME OF BOOK YOU WANT TO ISSUE :- ");
+            String s= obj.next();
+            int index=al.indexOf(s);
+            arr[index].IssueBook();
+        }
+        else {
+            System.out.println("INVALID INPUT");
+        }
+    }
+}
